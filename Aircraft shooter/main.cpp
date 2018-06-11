@@ -15,7 +15,10 @@ private:
 
 private:
 	sf::RenderWindow mWindow;
-	sf::CircleShape mPlayer;
+
+	sf::Texture mTexture;
+	sf::Sprite mPlayer;
+
 	bool isMovingUp = false;
 	bool isMovingDown = false;
 	bool isMovingLeft = false;
@@ -24,11 +27,16 @@ private:
 
 Game::Game()
 	: mWindow(sf::VideoMode(640, 480), "Aircraft shooter")
+	, mTexture()
 	, mPlayer()
 {
-	mPlayer.setRadius(40.f);
+	//if (!mTexture.loadFromFile("F:/repository_VS17/Aircraft shooter/Textures/Eagle.png"))
+	if (!mTexture.loadFromFile("Textures/Eagle.png"))
+	{
+		//error handling
+	}
+	mPlayer.setTexture(mTexture);
 	mPlayer.setPosition(100.f, 100.f);
-	mPlayer.setFillColor(sf::Color::Cyan);
 }
 
 void Game::run()
